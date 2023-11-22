@@ -2,9 +2,9 @@ package ada.tech.tenthirty.tvpackages.controller;
 
 import ada.tech.tenthirty.tvpackages.contants.RabbitMQConstantes;
 import ada.tech.tenthirty.tvpackages.payloads.PagamentoRequest;
+import ada.tech.tenthirty.tvpackages.payloads.PagamentoResponse;
 import ada.tech.tenthirty.tvpackages.service.PagamentoService;
 import ada.tech.tenthirty.tvpackages.service.RabbitMQService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,8 @@ public class PagamentoController {
     @Autowired
     private RabbitMQService rabbitMQService;
 
-
+    @Autowired
+    private PagamentoService pagamentoService;
 
     @PostMapping
     private ResponseEntity criarPagamento(@RequestBody PagamentoRequest pagamentoRequest) {
@@ -25,8 +26,25 @@ public class PagamentoController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    private ResponseEntity<PagamentoResponse> efetuarPagamento(@PathVariable Long id, @RequestBody PagamentoRequest pagamentoRequest) {
+        try {
+            return ResponseEntity.ok(pagamentoService.efetuarPagamento(id, pagamentoRequest));
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 
+//    @PutMapping("/{id}")
+//    private ResponseEntity<PagamentoResponse> efetuarPagamento(@PathVariable Integer id, @RequestBody PagamentoRequest pagamentoRequest) {
+//        try {
+//            return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
+//        } catch (ClienteNaoEncontradoException exception) {
+//            System.out.println(exception.getMessage());
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 //        private final PagamentoService pagamentoService;
 //
 //        @Autowired

@@ -26,7 +26,7 @@ public class Pagamento {
     @Column(name = "valor")
     private BigDecimal valor;
 
-    @Column(name = "data_vencimento")
+    @Column(name = "data_vencimento", nullable = false)
     private Date dataVencimento;
 
     @Column(name = "data_pagamento")

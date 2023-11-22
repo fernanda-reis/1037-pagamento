@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
+@AllArgsConstructor
 public class PagamentoRequest implements Serializable {
     public String faturaId;
     public String usuarioId;
@@ -16,15 +17,4 @@ public class PagamentoRequest implements Serializable {
     public Date dataVencimento;
     public Date dataPagamento;
     public String status;
-
-    public PagamentoRequest(String faturaId, String usuarioId, BigDecimal valor, Date dataVencimento){
-        this.faturaId = faturaId;
-        this.usuarioId = usuarioId;
-        this.valor = valor;
-        this.dataVencimento = dataVencimento;
-
-        this.metodoPagamento = null;
-        this.dataPagamento = null;
-        this.status = "Pendente";
-    }
 }
