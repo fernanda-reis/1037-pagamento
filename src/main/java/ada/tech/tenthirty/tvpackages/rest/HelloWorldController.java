@@ -25,4 +25,11 @@ public class HelloWorldController {
 
         return new HelloResponse("Olá ", name);
     }
+
+    @GetMapping
+    public HelloResponse sayHello(){
+
+        return new HelloResponse("Olá ", "fernanda");
+    }
+
 }
