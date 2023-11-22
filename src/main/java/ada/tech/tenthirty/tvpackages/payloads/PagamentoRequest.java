@@ -10,14 +10,16 @@ import java.util.Date;
 @Getter
 public class PagamentoRequest implements Serializable {
     public String faturaId;
+    public String usuarioId;
     public String metodoPagamento;
     public BigDecimal valor;
     public Date dataVencimento;
     public Date dataPagamento;
     public String status;
 
-    public PagamentoRequest(String faturaId, BigDecimal valor, Date dataVencimento){
+    public PagamentoRequest(String faturaId, String usuarioId, BigDecimal valor, Date dataVencimento){
         this.faturaId = faturaId;
+        this.usuarioId = usuarioId;
         this.valor = valor;
         this.dataVencimento = dataVencimento;
 

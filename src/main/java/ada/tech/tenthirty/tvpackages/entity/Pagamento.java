@@ -1,4 +1,4 @@
-package ada.tech.tenthirty.tvpackages.entidades;
+package ada.tech.tenthirty.tvpackages.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -16,6 +16,9 @@ public class Pagamento {
 
     @Column(name = "fatura_id", nullable = false)
     private String faturaId;
+
+    @Column(name = "usuario_id", nullable = false)
+    private String usuarioId;
 
     @Column(name = "metodo_pagamento")
     private String metodoPagamento;
