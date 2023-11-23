@@ -6,9 +6,12 @@ import ada.tech.tenthirty.tvpackages.payloads.PagamentoResponse;
 import ada.tech.tenthirty.tvpackages.service.PagamentoService;
 import ada.tech.tenthirty.tvpackages.service.RabbitMQService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @RestController
 @RequestMapping(value = "pagamento")
@@ -35,16 +38,33 @@ public class PagamentoController {
         }
     }
 
+    @GetMapping("/consulta/{usuarioId}")
+    public ResponseEntity<PagamentoResponse> consultarPagamento(@PathVariable String usuarioId) {
+        PagamentoResponse pagamentoResponse = pagamentoService.consultarUsuario(usuarioId);
 
-//    @PutMapping("/{id}")
-//    private ResponseEntity<PagamentoResponse> efetuarPagamento(@PathVariable Integer id, @RequestBody PagamentoRequest pagamentoRequest) {
-//        try {
-//            return ResponseEntity.ok(clienteServico.editarCliente(id, clienteRequest));
-//        } catch (ClienteNaoEncontradoException exception) {
-//            System.out.println(exception.getMessage());
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+        if (pagamentoResponse != null) {
+            return ResponseEntity.ok(pagamentoResponse);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+
+    @PutMapping("atualizar/{id}")
+    public ResponseEntity<PagamentoResponse> atualizarPagamento(@PathVariable Long id, @RequestBody PagamentoRequest pagamentoRequest) {
+        try {
+            PagamentoResponse pagamentoResponse = pagamentoService.atualizarPagamento(id, pagamentoRequest);
+            if (pagamentoResponse != null) {
+                return ResponseEntity.ok(pagamentoResponse);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
 //        private final PagamentoService pagamentoService;
 //
 //        @Autowired
