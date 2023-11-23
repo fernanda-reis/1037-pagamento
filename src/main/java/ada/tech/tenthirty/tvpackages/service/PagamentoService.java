@@ -35,4 +35,31 @@ public class PagamentoService {
             return PagamentoConverter.toResponse(pagamentoRepository.save(pagamento));
         }
     }
+
+
+        public PagamentoResponse consultarUsuario(String usuarioId) {
+            Pagamento pagamento = pagamentoRepository.findByUsuarioId(usuarioId);
+
+            if (pagamento != null) {
+                return PagamentoConverter.toResponse(pagamento);
+            } else {
+                return null;
+            }
+        }
+
+    public PagamentoResponse atualizarPagamento(Long id, PagamentoRequest pagamentoRequest) {
+        Optional<Pagamento> pagamentoEncontrado = pagamentoRepository.findById(id);
+        if (pagamentoEncontrado.isPresent()) {
+            Pagamento pagamento = pagamentoEncontrado.get();
+            pagamento.setMetodoPagamento(pagamentoRequest.getMetodoPagamento());
+            pagamento.setStatus(pagamentoRequest.getStatus());
+            // Atualize outros campos conforme necessário
+
+            Pagamento pagamentoAtualizado = pagamentoRepository.save(pagamento);
+            return PagamentoConverter.toResponse(pagamentoAtualizado);
+        } else {
+            return null; // Ou lança uma exceção ou retorna um objeto vazio para indicar que o pagamento não foi encontrado
+        }
+    }
+
 }
