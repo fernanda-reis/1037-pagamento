@@ -7,11 +7,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface IPagamentoRepository extends JpaRepository<Pagamento, Long> {
 
-    Pagamento findByUsuarioId(String usuarioId);
+    List<Pagamento> findAllByUsuarioId(String usuarioId);
 }
 
 

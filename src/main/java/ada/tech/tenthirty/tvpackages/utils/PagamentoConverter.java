@@ -4,6 +4,9 @@ import ada.tech.tenthirty.tvpackages.entity.Pagamento;
 import ada.tech.tenthirty.tvpackages.payloads.PagamentoRequest;
 import ada.tech.tenthirty.tvpackages.payloads.PagamentoResponse;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PagamentoConverter {
 
     public static Pagamento toEntity(PagamentoRequest pagamentoRequest) {
@@ -27,8 +30,18 @@ public class PagamentoConverter {
     public static PagamentoResponse toResponse(Pagamento pagamento) {
         PagamentoResponse pagamentoResponse = new PagamentoResponse();
         pagamentoResponse.setFaturaId(pagamento.getFaturaId());
-        pagamentoResponse.setUsuarioId(pagamento.getUsuarioId());
-        pagamentoResponse.setStatus(pagamento.getStatus());
+        pagamentoResponse.setDataVencimento(pagamento.getDataVencimento());
         return pagamentoResponse;
+    }
+
+    public static List<PagamentoResponse> toResponseList(List<Pagamento> pagamentos) {
+        List<PagamentoResponse> pagamentoResponses = new ArrayList<>();
+
+        for (Pagamento pagamento : pagamentos) {
+            PagamentoResponse pagamentoResponse = PagamentoConverter.toResponse(pagamento);
+            pagamentoResponses.add(pagamentoResponse);
+        }
+
+        return pagamentoResponses;
     }
 }
