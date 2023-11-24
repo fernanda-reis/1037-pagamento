@@ -28,13 +28,14 @@ O projeto é baseado em uma arquitetura de microsserviços, onde a comunicação
 ### 1. Criar Pagamento
 O microserviço de Fatura envia uma requisição assíncrona para cadastrar um novo pagamento com os seguintes dados:
 
-```json
+```
 { 
      "faturaId": "string",
      "usuarioId": "string",
      "valor": "BigDecimal", 
      "dataVencimento": "string (formato yyyy-mm-dd)"
 }
+```
 
 Nome da Fila: CRIAR_PAGAMENTO
 
@@ -43,19 +44,22 @@ O microserviço de Pagamento oferece um endpoint REST para consultar pagamentos 
 
 Endpoint: GET /pagamento/<UsuarioId>
 
-### 3. Retorna Pendencia 
+### 3. Retorna Pendencia
 O serviço de Pagamento retorna pendências para outros serviços como Assinatura e Visita Técnica. A resposta contém informações sobre faturas pendentes:
 
+```
 [ 
   { 
-     "faturaId": string, 
-     "dataVencimento": string (formato yyyy-mm-dd)
+     "faturaId": "string", 
+     "dataVencimento": "string (formato yyyy-mm-dd)"
   }
 ]
+```
 
 ### Contrato de Comunicação
-![f6f36058-1646-4b78-9246-412dfd9b5e18](https://github.com/fernanda-reis/1037-pagamento/assets/116811743/e6991c83-5286-4c99-b79f-fc388a13c504)
-![d5838e46-e854-4e73-8f6a-01d7df1727e5](https://github.com/fernanda-reis/1037-pagamento/assets/116811743/07d177f3-e75e-4142-9658-b4564f9ae848)
+![bf4e7522-b165-4980-92d7-987d0ace2039](https://github.com/lucianasfoliveira/teste/assets/116811743/62f33654-d1e5-4fab-bee3-758ae3281962)
+![23a56df2-d19b-4367-8414-beff99804a44](https://github.com/lucianasfoliveira/teste/assets/116811743/5002ab21-18d3-4f1b-bd43-43a1860c575e)
+
 
 ## Contribuição
 
