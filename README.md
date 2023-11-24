@@ -71,4 +71,7 @@ O serviço de Pagamento retorna pendências para outros serviços como Assinatur
 - Jessica Lima
 - Luciana Oliveira
 
+[Link para o repositório 1037-promocao](https://github.com/beatrizberto/1037-promocao)
+
+
 
