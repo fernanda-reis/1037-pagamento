@@ -1,6 +1,5 @@
 package ada.tech.tenthirty.tvpackages.payloads;
 
-import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;

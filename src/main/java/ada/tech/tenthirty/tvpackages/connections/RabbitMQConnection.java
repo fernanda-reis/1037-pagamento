@@ -40,15 +40,13 @@ public class RabbitMQConnection {
         Binding ligacaoEfetuarPagamento = this.relacionamento(filaEfetuarPagamento, troca);
         Binding ligacaoConsultarPagamento = this.relacionamento(filaConsultarPagamento, troca);
 
-        //Criando as filas no rabbitMQ
+
         this.amqpAdmin.declareQueue(filaCriarPagamento);
         this.amqpAdmin.declareQueue(filaEfetuarPagamento);
         this.amqpAdmin.declareQueue(filaConsultarPagamento);
 
-        //Criando exchange
         this.amqpAdmin.declareExchange(troca);
 
-        //Criando ligações
         this.amqpAdmin.declareBinding(ligacaoCriarPagamento);
         this.amqpAdmin.declareBinding(ligacaoEfetuarPagamento);
         this.amqpAdmin.declareBinding(ligacaoConsultarPagamento);
