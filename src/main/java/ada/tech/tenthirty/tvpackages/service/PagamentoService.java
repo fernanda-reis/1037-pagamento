@@ -8,12 +8,11 @@ import ada.tech.tenthirty.tvpackages.utils.PagamentoConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class PagamentoService {
@@ -63,12 +62,11 @@ public class PagamentoService {
             Pagamento pagamento = pagamentoEncontrado.get();
             pagamento.setMetodoPagamento(pagamentoRequest.getMetodoPagamento());
             pagamento.setStatus(pagamentoRequest.getStatus());
-            // Atualize outros campos conforme necessário
 
             Pagamento pagamentoAtualizado = pagamentoRepository.save(pagamento);
             return PagamentoConverter.toResponse(pagamentoAtualizado);
         } else {
-            return null; // Ou lança uma exceção ou retorna um objeto vazio para indicar que o pagamento não foi encontrado
+            return null;
         }
     }
 

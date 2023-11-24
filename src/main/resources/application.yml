@@ -11,15 +11,8 @@ spring:
     name: default-arquetype
   main:
     allow-bean-definition-overriding: true
-#Remove this feature to enable database connections
-#  autoconfigure:
-#    exclude:
-#      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
   liquibase:
     enabled: false
-#  --------
-
-# Enabling database connection
   datasource:
     url: jdbc:h2:mem:testdb
     username: sa
@@ -35,19 +28,10 @@ spring:
     hibernate:
       ddl-auto: update
 
-## Enable liquidbase
-
-#  liquibase:
-#    enabled: true
-#    change-log: classpath:db/changelog/changelog-local.xml
-
-## Enabling rabbitmq
-
   rabbitmq:
     host: 127.0.0.1
     port: 5672
-#    username: <username>
-#    password: <password>
+
     cache:
       connection:
         mode: CONNECTION
