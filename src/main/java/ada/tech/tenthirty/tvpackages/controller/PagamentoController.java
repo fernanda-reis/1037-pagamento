@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "pagamento")
@@ -39,11 +40,11 @@ public class PagamentoController {
     }
 
     @GetMapping("/consulta/{usuarioId}")
-    public ResponseEntity<PagamentoResponse> consultarPagamento(@PathVariable String usuarioId) {
-        PagamentoResponse pagamentoResponse = pagamentoService.consultarUsuario(usuarioId);
+    public ResponseEntity<List<PagamentoResponse>> consultarPagamento(@PathVariable String usuarioId) {
+        List<PagamentoResponse> pagamentos = pagamentoService.consultarUsuario(usuarioId);
 
-        if (pagamentoResponse != null) {
-            return ResponseEntity.ok(pagamentoResponse);
+        if (pagamentos != null) {
+            return ResponseEntity.ok(pagamentos);
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -64,19 +65,6 @@ public class PagamentoController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-
-//        private final PagamentoService pagamentoService;
-//
-//        @Autowired
-//        public PagamentoController(PagamentoService pagamentoService) {
-//            this.pagamentoService = pagamentoService;
-//        }
-//
-//        @PostMapping("/salvar")
-//        public ResponseEntity<Pagamento> salvarPagamento(@RequestBody Pagamento pagamento) {
-//            Pagamento novoPagamento = pagamentoService.salvarPagamento(pagamento);
-//            return ResponseEntity.ok(novoPagamento);
-//        }
 
 
 }

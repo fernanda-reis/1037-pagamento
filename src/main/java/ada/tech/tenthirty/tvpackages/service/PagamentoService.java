@@ -8,8 +8,12 @@ import ada.tech.tenthirty.tvpackages.utils.PagamentoConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PagamentoService {
@@ -37,16 +41,22 @@ public class PagamentoService {
     }
 
 
-        public PagamentoResponse consultarUsuario(String usuarioId) {
-            Pagamento pagamento = pagamentoRepository.findByUsuarioId(usuarioId);
+        public List<PagamentoResponse> consultarUsuario(String usuarioId) {
+            List<PagamentoResponse> pagamentos = new ArrayList<>();
 
-            if (pagamento != null) {
-                return PagamentoConverter.toResponse(pagamento);
+            List<Pagamento> retornoPagamento = pagamentoRepository.findAllByUsuarioId(usuarioId);
+            if ((pagamentos != null) || (pagamentos.isEmpty())) {
+                List<PagamentoResponse> pagamentosVencidos = new ArrayList<>();
+                pagamentosVencidos = retornoPagamento.stream()
+                        .filter(pagamento -> pagamento.getDataVencimento().before(new Date()))
+                        .map(PagamentoConverter::toResponse)
+                        .toList();
+                return pagamentosVencidos;
             } else {
                 return null;
             }
-        }
 
+        }
     public PagamentoResponse atualizarPagamento(Long id, PagamentoRequest pagamentoRequest) {
         Optional<Pagamento> pagamentoEncontrado = pagamentoRepository.findById(id);
         if (pagamentoEncontrado.isPresent()) {
