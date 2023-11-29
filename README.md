@@ -58,9 +58,8 @@ O serviço de Pagamento retorna pendências para outros serviços como Assinatur
 ```
 
 ### Contrato de Comunicação
-![bf4e7522-b165-4980-92d7-987d0ace2039](https://github.com/lucianasfoliveira/teste/assets/116811743/62f33654-d1e5-4fab-bee3-758ae3281962)
-![23a56df2-d19b-4367-8414-beff99804a44](https://github.com/lucianasfoliveira/teste/assets/116811743/5002ab21-18d3-4f1b-bd43-43a1860c575e)
-
+[Link para ContratoCriarPagamento](https://github.com/fernanda-reis/1037-pagamento/blob/main/public/ContratoCriarPagamento)
+[Link para ContratoConsultarPagamento](https://github.com/fernanda-reis/1037-pagamento/blob/main/public/ContratoConsultarPagamento)
 
 ## Contribuição
 
